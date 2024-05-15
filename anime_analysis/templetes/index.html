@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Recommendation Engine</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Anime Recommendation Engine</h1>
+    <form method="POST">
+        <label for="genres">Select your preferred genres:</label><br>
+        <select name="genres" multiple>
+            <option value="Action">Action</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Magic">Magic</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Romance">Romance</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Slice of Life">Slice of Life</option>
+        </select><br>
+        <button type="submit">Get Recommendations</button>
+    </form>
+    {% if recommendations %}
+        <h2>Recommended Anime:</h2>
+        <ul>
+        {% for anime in recommendations %}
+            <li>
+                <strong>{{ anime['title'] }}</strong><br>
+                Genre: {{ anime['genre'] }}<br>
+                Rating: {{ anime['mean_rating'] }} (based on {{ anime['rating_count'] }} ratings)<br>
+                Synopsis: {{ anime['synopsis'] }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
